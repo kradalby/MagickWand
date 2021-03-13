@@ -1,0 +1,1 @@
+#include <magick/MagickCore.h>

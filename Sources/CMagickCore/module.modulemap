@@ -1,0 +1,3 @@
+module CMagickCore {
+	umbrella header "shim.h"
+}
