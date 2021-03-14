@@ -34,12 +34,32 @@ extension ImageWand {
   // TODO: Resize modes. like AspectFill, AspectFit.
   // TODO: resized, rescaled -> ImageWand
 
+  private func newWidth(_ height: Int) -> Int {
+    let currentHeight = self.size.height
+    let resizeFactor = Double(height) / Double(currentHeight)
+    return Int(Double(self.size.width) * resizeFactor)
+  }
+
+  private func newHeight(_ width: Int) -> Int {
+    let currentWidth = self.size.width
+    let resizeFactor = Double(width) / Double(currentWidth)
+    return Int(Double(self.size.height) * resizeFactor)
+  }
+
   public func resize(width: Double, height: Double, filter: MagickWand.Filter, blur: Double = 1.0) {
     self.resize(width: Int(width), height: Int(height), filter: filter, blur: blur)
   }
 
   public func resize(width: Int, height: Int, filter: MagickWand.Filter, blur: Double = 1.0) {
     MagickResizeImage(self.pointer, width, height, filter.filter, blur)
+  }
+
+  public func resize(width: Int, filter: MagickWand.Filter, blur: Double = 1.0) {
+    MagickResizeImage(self.pointer, width, self.newHeight(width), filter.filter, blur)
+  }
+
+  public func resize(height: Int, filter: MagickWand.Filter, blur: Double = 1.0) {
+    MagickResizeImage(self.pointer, self.newWidth(height), height, filter.filter, blur)
   }
 
   public func adaptiveResize(width: Double, height: Double) {

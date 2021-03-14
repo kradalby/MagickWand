@@ -37,6 +37,20 @@ let package = Package(
       dependencies: [
         "CMagickWand",
         "CMagickCore",
+      ],
+      cxxSettings: [
+        .define("MAGICKCORE_HDRI_ENABLE", to: "0"),
+        .define("MAGICKCORE_QUANTUM_DEPTH", to: "16"),
+      ],
+      linkerSettings: [
+        .unsafeFlags(
+          [
+            "-L/usr/local/opt/imagemagick@6/lib",
+            "-I/usr/local/opt/imagemagick@6/include",
+          ],
+          .when(platforms: [.macOS])
+
+        )
       ]
     ),
     .testTarget(

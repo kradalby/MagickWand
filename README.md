@@ -47,4 +47,4 @@ Add this package to `dependencies` in your `Package.swift` file.
 
 ## Building, Testing and XCode Setup
 
-If `pgk-config` is installed no extra flags are required.
+If `pkg-config` is installed no extra flags are required.
