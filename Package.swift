@@ -41,7 +41,7 @@ let package = Package(
       cxxSettings: [
         .define("MAGICKCORE_HDRI_ENABLE", to: "0"),
         .define("MAGICKCORE_QUANTUM_DEPTH", to: "16"),
-      ],
+      ]
     ),
     .testTarget(
       name: "MagickWandTests",
